@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+ <div class="nav">
     <header>
       <div>
         <div @click="navShow" class="nav-icon">
@@ -8,12 +8,14 @@
         </div>
       </div>
       <div>
-        <div class="cart-icon">
-          <img src="../assets/graphics/bag.svg"/>
-        </div>
+        <router-link to="/cart">
+          <div class="cart-icon" @click="showCart">
+            <img src="../assets/graphics/bag.svg" />
+          </div>
+        </router-link>
       </div>
     </header>
-    <section v-if="showNav" @click="closeMeny">
+    <section v-if="showNav" @click="navShow">
       <ul>
         <router-link to="/meny">
           <li>Meny</li>
@@ -31,6 +33,8 @@
     </section>
     <router-view />
   </div>
+
+
 </template>
 
 <script>
@@ -41,14 +45,16 @@ export default {
   data() {
     return {
       showNav: false,
+      cartShow: false,
     };
   },
   methods: {
     navShow() {
       this.showNav = !this.showNav;
     },
-    closeMeny() {
-      this.showNav = false;
+    showCart() {
+      this.cartShow = !this.cartShow;
+      this.$store.commit("showCart", this.cartShow);
     },
   },
 };
@@ -86,7 +92,6 @@ header {
   }
   .cart-icon img {
     background-color: black;
-    
   }
   img {
     cursor: pointer;
@@ -97,7 +102,7 @@ header {
     box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.43);
   }
 }
-section{
+section {
   position: absolute;
   top: 150px;
 }

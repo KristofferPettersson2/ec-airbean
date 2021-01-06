@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="about">
     <h1>Vårt Kaffe</h1>
     <article>
       <h3>
@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+.about{
+  color: red;
+}
 img {
   border-radius: 100%;
   margin-top: 50px;
