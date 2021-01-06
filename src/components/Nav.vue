@@ -1,18 +1,20 @@
 <template>
   <div class="nav">
-    <div class="nav-icon d-flex justify-content-center" @click="navShow">
-      <header>
-        <div>
+    <header>
+      <div>
+        <div @click="navShow" class="nav-icon">
           <img v-if="showNav == false" src="../assets/graphics/navicon.svg" />
-          <img v-if="showNav == true" src="@/assets/graphics/close.svg" width="20px" />
+          <img v-if="showNav == true" src="@/assets/graphics/close.svg" />
         </div>
-        <div>
-          <img src="@/assets/graphics/bag.svg" alt="" />
+      </div>
+      <div>
+        <div class="cart-icon">
+          <img src="../assets/graphics/bag.svg"/>
         </div>
-      </header>
-    </div>
+      </div>
+    </header>
     <section v-if="showNav" @click="closeMeny">
-      <ul class="d-flex flex-column justify-content-center align-items-center">
+      <ul>
         <router-link to="/meny">
           <li>Meny</li>
         </router-link>
@@ -28,20 +30,14 @@
       </ul>
     </section>
     <router-view />
-    <Icons  />
   </div>
 </template>
 
 <script>
-import Icons from "@/components/Icons";
 export default {
   name: "Nav",
-  components: {
-    Icons,
-  },
-  props: {
-    
-  },
+  components: {},
+  props: {},
   data() {
     return {
       showNav: false,
@@ -59,17 +55,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-icon {
-  cursor: pointer;
-  position: absolute;
-  top: 50px;
-  left: 30px;
-  background-color: white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  -webkit-box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.43);
-  box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.43);
+.nav {
+  margin-left: 60px;
+  margin-right: 60px;
 }
 ul {
   list-style: none;
@@ -85,14 +73,32 @@ ul {
     }
   }
 }
-section {
-  position: absolute;
-  top: 40px;
-  left: 100px;
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  div {
+    padding-top: 20px;
+  }
+  .nav-icon img {
+    background-color: white;
+  }
+  .cart-icon img {
+    background-color: black;
+    
+  }
+  img {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    -webkit-box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.43);
+    box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.43);
+  }
 }
-img {
+section{
   position: absolute;
-  left: 15px;
-  top: 15px;
+  top: 150px;
 }
 </style>

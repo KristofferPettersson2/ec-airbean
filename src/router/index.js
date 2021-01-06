@@ -5,6 +5,8 @@ import About from '../views/About.vue'
 import Meny from '../views/Meny.vue'
 import Profile from '../views/Profile.vue'
 import Status from '../views/Status.vue'
+import Cart from '../views/Cart.vue'
+
 
 //Bootstrap
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -40,6 +42,11 @@ const routes = [
     path: '/status',
     name: 'Status',
     component: Status
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
   },
 ]
 

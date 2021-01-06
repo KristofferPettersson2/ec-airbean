@@ -1,12 +1,19 @@
 <template>
   <div>
     <header>
+      <Nav />
     </header>
   </div>
 </template>
 
 <script>
-export default {};
+import Nav from "@/components/Nav";
+export default {
+  name: "Header",
+  components: {
+    Nav,
+  },
+};
 </script>
 
 <style scoped>

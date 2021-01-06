@@ -14,5 +14,6 @@ footer {
   background-repeat: no-repeat, repeat;
   background-size: cover;
   height: 300px;
+  margin-top: 600px;
 }
 </style>
