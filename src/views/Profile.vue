@@ -11,8 +11,8 @@
           <tr>
             <th>Orderhistorik</th>
           </tr>
-          <tr v-for="order in orderHistory" :key="order.orderNumber">
-            <td>{{ order[0].orderNumber }}</td>
+          <tr v-for="order in orderHistory" :key="order.orderNumber" class="mb-4">
+            <td>{{ order[0].orderNumber }} <span>{{order[0].date}}</span></td>
             <td>
               Total Ordersumma <span>{{ order[0].total }}</span> kr
             </td>
@@ -173,9 +173,9 @@ table {
       font-size: 150%;
       margin-bottom: 20px;
     }
-    width: 500px;
+    width: 510px;
     display: grid;
-    gap: 25px;
+    gap: 10px;
     margin-top: 10px;
     border-bottom: 1px solid #6c757d;
     span {
@@ -186,6 +186,6 @@ table {
     margin-top: 20px;
     font-size: 150%;
   }
-  span{margin-left: 260px;}
+  span{margin-left: 250px;}
 }
 </style>

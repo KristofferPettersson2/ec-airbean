@@ -31,7 +31,7 @@
           <p>inkl moms + drönarleverans</p>
         </div>
         <router-link to="/status">
-          <Button :btnTitle="btnText" @click.native="placeOrder" />
+          <Button :btnTitle="'Take my money!'" @click.native="placeOrder" />
         </router-link>
       </section>
     </div>
@@ -42,9 +42,6 @@
 import Button from "@/components/Button";
 export default {
   name: "Cart",
-  data() {
-    return { btnText: "Take my money!" };
-  },
   components: {
     Button,
   },
@@ -93,11 +90,22 @@ export default {
       }
       return result;
     },
+    date() {
+      let date = new Date();
+      let dd = (date.getDate() < 10 ? "0" : "") + date.getDate();
+      let mm = (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1);
+      let today = `${date.getFullYear()} ${mm} ${dd}`;
+      return today;
+    },
     placeOrder() {
       let order = [];
       let orderNumber = this.orderNumber(7);
       let total = this.$store.state.cartTotal;
-      order.push({ orderNumber: orderNumber, total: total });
+      order.push({
+        orderNumber: orderNumber,
+        total: total,
+        date: this.date(),
+      });
       order.push(this.$store.state.cart);
       if (this.createdAccount == true) {
         if (localStorage.OrderHistory) {

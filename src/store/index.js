@@ -70,22 +70,16 @@ export default new Vuex.Store({
     orderHistory(state, payload) {
       state.orderHistory = payload
     },
-
   },
   actions: {
-    hideLanding({ commit }) {
-      setTimeout(() => {
-        commit('hideLanding')
-      }, 5000)
-    },
     getApi({ commit }) {
-        fetch('http://localhost:5000/api/beans')
-          .then(response => {
-            commit('loadingStatus', false)
-            return response.json()
-          })
-          .then(data => commit('getApi', data.menu))
-          .catch(error => console.error('Error:', error));
+      fetch('http://localhost:5000/api/beans')
+        .then(response => {
+          commit('loadingStatus', false)
+          return response.json()
+        })
+        .then(data => commit('getApi', data.menu))
+        .catch(error => console.error('Error:', error));
     },
     async getLocalStorageUser({ commit }, payload) {
       commit('userProfile', await payload)

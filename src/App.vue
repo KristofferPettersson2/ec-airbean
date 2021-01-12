@@ -24,10 +24,6 @@ export default {
       return this.$store.state.footerShow;
     },
   },
-  created() {
-    /* this.$store.dispatch("hideLanding"); */
-    /* setTimeout(() => this.$router.push({ path: "/about" }), 5000); */
-  },
    mounted() {
     this.$store.dispatch("getApi");
     if (localStorage.User)
