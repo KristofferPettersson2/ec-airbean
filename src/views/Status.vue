@@ -11,8 +11,6 @@
         <h1>Gör en beställning!</h1>
       </div>
       <router-link to="/meny">
-        <!-- <button v-if="orderVisible" class="btn">Ok, cool!</button>
-        <button v-if="!orderVisible" class="btn">Meny</button> -->
         <Button v-if="orderVisible" :btnTitle="'Ok, cool'"/>
         <Button v-if="!orderVisible" :btnTitle="'Meny'"/>
       </router-link>
