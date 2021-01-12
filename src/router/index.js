@@ -7,6 +7,15 @@ import Profile from '../views/Profile.vue'
 import Status from '../views/Status.vue'
 import Cart from '../views/Cart.vue'
 
+//uuid
+import UUID from "vue-uuid";
+ 
+Vue.use(UUID);
+
+//axios
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 
 //Bootstrap
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -18,6 +27,10 @@ Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path : '*',
+    redirect : '/landing'
+  },
   {
     path: '/landing',
     name: 'Landing',

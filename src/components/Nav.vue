@@ -1,5 +1,5 @@
 <template>
- <div class="nav">
+  <div class="nav">
     <header>
       <div>
         <div @click="navShow" class="nav-icon">
@@ -9,32 +9,34 @@
       </div>
       <div>
         <router-link to="/cart">
-          <div class="cart-icon" @click="showCart">
+          <div class="cart-icon">
             <img src="../assets/graphics/bag.svg" />
+            <span>{{ cartCounter() }}</span>
           </div>
         </router-link>
       </div>
     </header>
     <section v-if="showNav" @click="navShow">
-      <ul>
+      <img v-if="showNav == true" src="@/assets/graphics/close.svg" />
+      <ul class="d-flex flex-column justify-content-center">
         <router-link to="/meny">
           <li>Meny</li>
+          <hr />
         </router-link>
         <router-link to="/about">
           <li>vårt kaffe</li>
+          <hr />
         </router-link>
-        <router-link to="/profile">
+        <router-link to="/profile" @click.native="$router.go()">
           <li>Min Profile</li>
+          <hr />
         </router-link>
-        <router-link to="/status">
+        <router-link to="/status" >
           <li>Orderstatus</li>
         </router-link>
       </ul>
     </section>
-    <router-view />
   </div>
-
-
 </template>
 
 <script>
@@ -51,11 +53,18 @@ export default {
   methods: {
     navShow() {
       this.showNav = !this.showNav;
+      this.$store.dispatch("footerToggle", !this.showNav);
     },
-    showCart() {
-      this.cartShow = !this.cartShow;
-      this.$store.commit("showCart", this.cartShow);
+    cartCounter() {
+      let result = 0;
+      this.$store.state.cart.forEach((element) => {
+        result += element.amount;
+      });
+      return result;
     },
+  },
+  created() {
+    this.cartCounter();
   },
 };
 </script>
@@ -67,16 +76,33 @@ export default {
 }
 ul {
   list-style: none;
-  width: 200px;
-  height: 300px;
+  width: 100%;
   background-color: black;
+  height: 1300px;
+  text-align: center;
+  font-size: 150%;
   li {
     color: white;
     padding: 10px;
     cursor: pointer;
+    font-size: 200%;
+    padding-top: 50px;
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+section {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  background-color: black;
+  img {
+    background-color: white;
+    position: absolute;
+    left: 60px;
+    top: 60px;
   }
 }
 header {
@@ -102,8 +128,23 @@ header {
     box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.43);
   }
 }
-section {
-  position: absolute;
-  top: 150px;
+.cart-icon {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  top: 30px;
+  span {
+    border-radius: 50px;
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    background-color: orange;
+    color: white;
+    width: 20px;
+  }
+}
+hr {
+  background-color: white;
+  width: 50px;
 }
 </style>

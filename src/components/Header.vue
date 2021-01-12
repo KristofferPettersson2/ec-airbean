@@ -20,6 +20,6 @@ export default {
 header {
   background-image: url("../assets/graphics/graphics-header.svg");
   background-size: cover;
-  height: 300px;
+  height: 600px;
 }
 </style>
