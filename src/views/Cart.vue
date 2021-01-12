@@ -55,6 +55,9 @@ export default {
     totalCart() {
       return this.$store.state.cartTotal;
     },
+    createdAccount() {
+      return this.$store.state.userProfile[0].createdAccount;
+    },
   },
   methods: {
     cartTotal() {
@@ -96,11 +99,13 @@ export default {
       let total = this.$store.state.cartTotal;
       order.push({ orderNumber: orderNumber, total: total });
       order.push(this.$store.state.cart);
-      if (localStorage.OrderHistory) {
-        let oldData = JSON.parse(localStorage.getItem("OrderHistory"));
-        oldData.push(order);
-        localStorage.setItem("OrderHistory", JSON.stringify(oldData));
-      } else localStorage.setItem("OrderHistory", JSON.stringify([order]));
+      if (this.createdAccount == true) {
+        if (localStorage.OrderHistory) {
+          let oldData = JSON.parse(localStorage.getItem("OrderHistory"));
+          oldData.push(order);
+          localStorage.setItem("OrderHistory", JSON.stringify(oldData));
+        } else localStorage.setItem("OrderHistory", JSON.stringify([order]));
+      }
       this.$store.commit("orderVisible", true);
       this.$store.commit("placeOrder", order);
     },

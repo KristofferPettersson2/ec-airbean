@@ -61,8 +61,8 @@ export default new Vuex.Store({
       state.toggleColor = payload
     },
     userProfile(state, payload) {
+      state.userProfile[0].createdAccount = true
       state.userProfile.push(payload)
-      state.userProfile.createdAccount = true
     },
     loadingStatus(state, payload) {
       state.loadingStatus = payload

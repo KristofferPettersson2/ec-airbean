@@ -12,17 +12,13 @@
             <th>Orderhistorik</th>
           </tr>
           <tr v-for="order in orderHistory" :key="order.orderNumber">
-            <th>{{ order[0].orderNumber }}</th>
-            <th>Total Ordersumma {{ order[0].total }} kr</th>
-            <hr/>
+            <td>{{ order[0].orderNumber }}</td>
+            <td>
+              Total Ordersumma <span>{{ order[0].total }}</span> kr
+            </td>
           </tr>
+          <p>Totalt Spenderat <span>{{ totalSpent }}</span> kr</p>
         </table>
-        <!-- <ul v-for="order in orderHistory" :key="order.orderNumber">
-          <li>{{ order[0].orderNumber }}</li>
-          <p>Total Ordersumma {{ order[0].total }} kr</p>
-          <hr />
-        </ul> -->
-        <p>Totalt Spenderat {{ totalSpent }}</p>
       </section>
     </div>
     <div class="create-account" v-if="!createdAccount">
@@ -77,7 +73,7 @@ export default {
   },
   computed: {
     createdAccount() {
-      return this.$store.state.userProfile.createdAccount;
+      return this.$store.state.userProfile[0].createdAccount;
     },
     user() {
       return this.$store.state.userProfile[1];
@@ -118,10 +114,8 @@ export default {
 <style lang="scss" scoped>
 .profile {
   color: white;
-
   margin-left: 100px;
   margin-right: 100px;
-
   display: grid;
   align-items: center;
   justify-content: center;
@@ -161,6 +155,7 @@ export default {
   img {
     width: 150px;
     height: 150px;
+    margin-bottom: 50px;
   }
   section {
     display: grid;
@@ -174,11 +169,23 @@ export default {
 table {
   list-style-type: none;
   tr {
-    display: flex;
-    flex-direction: column;
+    th{
+      font-size: 150%;
+      margin-bottom: 20px;
+    }
+    width: 500px;
+    display: grid;
+    gap: 25px;
+    margin-top: 10px;
+    border-bottom: 1px solid #6c757d;
+    span {
+      margin-left: 310px;
+    }
   }
-}
-hr {
-  background-color: white !important;
+  p {
+    margin-top: 20px;
+    font-size: 150%;
+  }
+  span{margin-left: 260px;}
 }
 </style>
